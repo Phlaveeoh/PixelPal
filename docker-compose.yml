@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  pixelpal:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: 'pixelpal_db'
+      MYSQL_ROOT_PASSWORD: 'password' 
+    volumes:
+      - db-data:/var/lib/mysql
+    restart: always
+
+volumes:
+  db-data:
