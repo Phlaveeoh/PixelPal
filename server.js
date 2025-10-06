@@ -8,8 +8,8 @@ const { authenticateToken } = require('./src/servizi/servizioAutenticazione');
 app.use(cookieParser());
 app.use(express.json());
 
-app.use(express.static("public"));
-app.use(authenticateToken, express.static("private"));
+app.use(express.static("static/public"));
+app.use(authenticateToken, express.static("static/private"));
 
 // Configurazione delle rotte API (da implementare in src/routes/)
 // const petRoutes = require('./src/routes/petRoutes');
