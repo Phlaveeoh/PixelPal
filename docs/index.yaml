@@ -1,0 +1,101 @@
+openapi: 3.0.0
+info:
+  title: PixelPal API
+  version: 1.0.0
+  description: ""
+servers:
+  - url: "{{URL}}"
+paths:
+  /api/auth/login:
+    parameters: []
+    post:
+      summary: Login
+      tags: &ref_0
+        - auth
+      parameters: []
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+            example:
+              username: utente
+              password: password
+  /api/auth/register:
+    parameters: []
+    post:
+      summary: Register
+      tags: *ref_0
+      parameters: []
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                confermaPassword:
+                  type: string
+            example:
+              username: utente2
+              password: password
+              confermaPassword: password
+  /api/auth/logout:
+    parameters: []
+    post:
+      summary: Logout
+      tags: *ref_0
+      parameters: []
+      responses: {}
+  /api/pet:
+    parameters: []
+    get:
+      summary: PetDashboard
+      tags: &ref_1
+        - pet
+      parameters: []
+      responses: {}
+  /api/pet/stato:
+    parameters: []
+    get:
+      summary: Stato
+      tags: *ref_1
+      parameters: []
+      responses: {}
+  /api/pet/nutri:
+    parameters: []
+    patch:
+      summary: Nutri
+      tags: *ref_1
+      parameters: []
+      responses: {}
+  /api/pet/gioca:
+    parameters: []
+    patch:
+      summary: Gioca
+      tags: *ref_1
+      parameters: []
+      responses: {}
+  /api/pet/adotta:
+    parameters: []
+    post:
+      summary: Adotta
+      tags: *ref_1
+      parameters: []
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            example: {}

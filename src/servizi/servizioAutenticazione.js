@@ -1,3 +1,6 @@
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET;
+
 function authenticateToken(req, res, next) {
     const token = req.cookies.token;
     if (!token) {
@@ -13,4 +16,4 @@ function authenticateToken(req, res, next) {
     }
 };
 
-module.exports = authenticateToken;
+module.exports = { authenticateToken };

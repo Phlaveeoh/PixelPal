@@ -3,20 +3,20 @@ const cookieParser = require("cookie-parser");
 const app = express();
 const port = 3000;
 require('dotenv').config();
-const authenticateToken = require('./src/servizi/servizioAutenticazione');
+const { authenticateToken } = require('./src/servizi/servizioAutenticazione');
 
 app.use(cookieParser());
 app.use(express.json());
 
 app.use(express.static("static/public"));
-app.use(authenticateToken, express.static("static/private"));
+app.use("private", authenticateToken, express.static("static/private"));
 
-// Configurazione delle rotte API (da implementare in src/routes/)
-// const petRoutes = require('./src/routes/petRoutes');
-// app.use('/api/pet', petRoutes);
-
+// Configurazione delle rotte API
 const authRoutes = require('./src/routers/authRouter');
 app.use('/api/auth', authRoutes);
+
+const petRoutes = require('./src/routers/petRouter');
+app.use('/api/pet', petRoutes);
 
 
 // Avvia il server

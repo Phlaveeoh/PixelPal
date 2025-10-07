@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
-const authenticateToken = require("../servizi/servizioAutenticazione");
+const { authenticateToken } = require("../servizi/servizioAutenticazione");
 
 router.post("/login", authController.login);
 router.post("/register", authController.register);
