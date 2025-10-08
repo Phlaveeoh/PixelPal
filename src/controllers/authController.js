@@ -55,9 +55,6 @@ exports.login = async (req, res) => {
             message: "Errore del server"
         });
     }
-    finally {
-        pool.release();
-    }
 };
 
 exports.register = async (req, res) => {
@@ -110,9 +107,6 @@ exports.register = async (req, res) => {
             success: false,
             message: "Errore del server"
         });
-    }
-    finally {
-        pool.release();
     }
 };
 

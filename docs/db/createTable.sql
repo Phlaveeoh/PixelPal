@@ -15,6 +15,7 @@ CREATE TABLE pets(
     tasso_di_felicita int NOT NULL COMMENT 'Tasso di calo della felicità'
 );
 CREATE TABLE pet_utente(
+    id_pet_utente int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
     id_utente int NOT NULL COMMENT 'Foreign Key di utenti',
     id_pet int NOT NULL COMMENT 'Foreign Key di pets',
     fame int NOT NULL COMMENT 'Fame attuale del pet',
@@ -23,8 +24,7 @@ CREATE TABLE pet_utente(
     ultimo_gioco TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     attivo BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (id_utente) REFERENCES utenti(id_utente) ON DELETE CASCADE,
-    FOREIGN KEY (id_pet) REFERENCES pets(id_pet) ON DELETE CASCADE,
-    PRIMARY KEY (id_utente, id_pet)
+    FOREIGN KEY (id_pet) REFERENCES pets(id_pet) ON DELETE CASCADE
 );
 CREATE TABLE cibi(
     id_cibo int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
