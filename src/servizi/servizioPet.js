@@ -1,4 +1,4 @@
-function aggiornaStatoPet(pet) {
+function decadimentoPet(pet) {
     const ORA_MS = 1000 * 60 * 60; // Millisecondi in un'ora
     const now = Date.now();
 
@@ -33,6 +33,24 @@ function aggiornaStatoPet(pet) {
         ultimo_cibo: new Date(ultimoCibo),
         ultimo_gioco: new Date(ultimoGioco)
     };
-}
+};
 
-module.exports = { aggiornaStatoPet };
+function aumentaFamePet(pet, cibo) {
+    const effetto_fame = cibo.effetto_fame;
+    return {
+        ...pet,
+        fame: Math.min(pet.fame + effetto_fame, 100),
+        ultimo_cibo: new Date()
+    };
+};
+
+function aumentaFelicitaPet(pet, gioco) {
+    const effetto_felicita = gioco.effetto_felicita;
+    return {
+        ...pet,
+        felicita: Math.min(pet.felicita + effetto_felicita, 100),
+        ultimo_gioco: new Date()
+    };
+};
+
+module.exports = { decadimentoPet, aumentaFamePet, aumentaFelicitaPet };
