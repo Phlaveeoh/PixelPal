@@ -58,33 +58,29 @@ exports.login = async (req, res) => {
 };
 
 exports.register = async (req, res) => {
-    const { username, password, confermaPassword } = req.body;
-    if (password !== confermaPassword) {
-        return res.status(400).json({
-            success: false,
-            message: "Le password non corrispondono"
-        });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const query = "INSERT INTO utenti (username, password) VALUES (?, ?)";
-
+    const { username, password } = req.body;
+    const conn = await pool.promise().getConnection();
     try {
-
-        const [righe] = await pool.promise().execute("SELECT id_utente FROM utenti WHERE username = ?", [username]);
+        await conn.beginTransaction();
+        
+        const [righe] = await conn.execute("SELECT id_utente FROM utenti WHERE username = ?", [username]);
         if (righe.length !== 0) {
+            await conn.rollback();
             return res.status(409).json({
                 success: false,
                 message: "Username già in uso"
             });
         }
 
-        const [result] = await pool.promise().execute(query, [username, hashedPassword]);
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const [result] = await conn.execute("INSERT INTO utenti (username, password) VALUES (?, ?)", [username, hashedPassword]);
         const payload = {
             userId: result.insertId,
             userName: username,
         };
 
+        await conn.commit();
+        
         const token = jwt.sign(payload, JWT_SECRET, {
             algorithm: "HS256",
             expiresIn: "1h"
@@ -102,11 +98,15 @@ exports.register = async (req, res) => {
         });
     }
     catch (error) {
+        await conn.rollback();
         console.error("Errore durante la registrazione:", error);
         return res.status(500).json({
             success: false,
             message: "Errore del server"
         });
+    }
+    finally {
+        conn.release();
     }
 };
 

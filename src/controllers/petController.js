@@ -5,6 +5,7 @@ exports.decadimento = async (req, res) => {
     const id_utente = req.user.userId;
     const conn = await pool.promise().getConnection();
     try {
+        await conn.beginTransaction();
         // Recupera il pet attivo dell'utente
         const [righe] = await conn.execute("SELECT id_pet_utente, nome, url_pet, fame, felicita, tasso_di_fame, tasso_di_felicita, ultimo_cibo, ultimo_gioco, attivo FROM pet_utente INNER JOIN pets ON pet_utente.id_pet = pets.id_pet WHERE id_utente = ? AND pet_utente.attivo = 1",
             [id_utente]);

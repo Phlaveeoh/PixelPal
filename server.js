@@ -12,11 +12,17 @@ app.use(express.static("static/public"));
 app.use("private", authenticateToken, express.static("static/private"));
 
 // Configurazione delle rotte API
-const authRoutes = require('./src/routers/authRouter');
-app.use('/api/auth', authRoutes);
+const authRouter = require('./src/routers/authRouter');
+app.use('/api/auth', authRouter);
 
-const petRoutes = require('./src/routers/petRouter');
-app.use('/api/pet', petRoutes);
+const petRouter = require('./src/routers/petRouter');
+app.use('/api/pet', petRouter);
+
+const userRouter = require('./src/routers/userRouter');
+app.use('/api/user', userRouter);
+
+const itemRouter = require('./src/routers/itemRouter');
+app.use('/api/item', itemRouter);
 
 
 // Avvia il server
