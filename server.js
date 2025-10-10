@@ -1,9 +1,10 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
-const app = express();
-const port = 3000;
 require('dotenv').config();
 const { authenticateToken } = require('./src/servizi/servizioAutenticazione');
+
+const app = express();
+const port = process.env.PORT || 3000;
 
 app.use(cookieParser());
 app.use(express.json());
