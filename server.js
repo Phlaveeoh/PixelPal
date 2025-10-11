@@ -10,7 +10,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(express.static("static/public"));
-app.use("private", authenticateToken, express.static("static/private"));
+app.use("/private", authenticateToken, express.static("static/private"));
 
 // Configurazione delle rotte API
 const authRouter = require('./src/routers/authRouter');

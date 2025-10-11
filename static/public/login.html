@@ -4,10 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <script>
+        async function handleLogin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const res = await fetch('http://localhost:3000/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ username, password }),
+                credentials: 'include'
+            });
+
+            if (res.ok) {
+                window.location.href = '/private/pagina.html';
+            } else {
+                alert('Credenziali non valide');
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Benvenuto nella pagina di login</h1>
-    <form action="/login" method="POST">
+    <form id="loginForm">
         <label for="username">Nome utente:</label>
         <input type="text" id="username" name="username" required>
         <br>
@@ -16,5 +37,9 @@
         <br>
         <button type="submit">Accedi</button>
     </form>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', handleLogin);
+    </script>
 </body>
 </html>
