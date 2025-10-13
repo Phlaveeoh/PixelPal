@@ -12,7 +12,8 @@ CREATE TABLE pets(
     fame_base int NOT NULL COMMENT 'Fame base del pet',
     felicita_base int NOT NULL COMMENT 'Felicità base del pet',
     tasso_di_fame int NOT NULL COMMENT 'Tasso di calo della fame',
-    tasso_di_felicita int NOT NULL COMMENT 'Tasso di calo della felicità'
+    tasso_di_felicita int NOT NULL COMMENT 'Tasso di calo della felicità',
+    url_pet VARCHAR(255) NOT NULL DEFAULT 'immagini/pets/defaultPet.png'
 );
 CREATE TABLE pet_utente(
     id_pet_utente int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
@@ -30,11 +31,13 @@ CREATE TABLE cibi(
     id_cibo int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
     nome VARCHAR(255) NOT NULL,
     effetto_fame int NOT NULL COMMENT 'Quantità di fame ripristinata',
-    costo int NOT NULL
+    costo int NOT NULL,
+    url_cibo VARCHAR(255) NOT NULL DEFAULT 'immagini/cibi/defaultCibo.png'
 );
 CREATE TABLE giochi(
     id_gioco int NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Primary Key',
     nome VARCHAR(255) NOT NULL,
     effetto_felicita int NOT NULL COMMENT 'Quantità di felicità ripristinata',
-    costo int NOT NULL
+    costo int NOT NULL,
+    url_gioco VARCHAR(255) NOT NULL DEFAULT 'immagini/giochi/defaultGioco.png'
 );

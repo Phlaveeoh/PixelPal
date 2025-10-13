@@ -10,6 +10,9 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(express.static("static/public"));
+app.use("/scripts", express.static("static/scripts"));
+app.use("/css", express.static("static/css"));
+app.use("/immagini", express.static("static/immagini"));
 app.use("/private", authenticateToken, express.static("static/private"));
 
 // Configurazione delle rotte API

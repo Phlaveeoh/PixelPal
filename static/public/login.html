@@ -1,45 +1,41 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <script>
-        async function handleLogin(event) {
-            event.preventDefault();
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            const res = await fetch('http://localhost:3000/api/auth/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password }),
-                credentials: 'include'
-            });
-
-            if (res.ok) {
-                window.location.href = '/private/pagina.html';
-            } else {
-                alert('Credenziali non valide');
-            }
-        }
-    </script>
 </head>
+
 <body>
     <h1>Benvenuto nella pagina di login</h1>
     <form id="loginForm">
-        <label for="username">Nome utente:</label>
-        <input type="text" id="username" name="username" required>
+        <label for="loginUsername">Nome utente:</label>
+        <input type="text" id="loginUsername" name="username" required>
         <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="password" required>
         <br>
         <button type="submit">Accedi</button>
     </form>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', handleLogin);
-    </script>
+    <form id="registerForm">
+        <label for="registerUsername">Nome utente:</label>
+        <input type="text" id="registerUsername" name="username" required>
+        <br>
+        <label for="registerPassword">Password:</label>
+        <input type="password" id="registerPassword" name="password" required>
+        <br>
+        <label for="registerConfermaPassword">Conferma password:</label>
+        <input type="password" id="registerConfermaPassword" name="confermaPassword" required>
+        <br>
+        <button type="submit">Registrati</button>
+    </form>
+
+    <div id="message"></div>
+
+    <script src="/scripts/authScripts.js"></script>
 </body>
+
 </html>
