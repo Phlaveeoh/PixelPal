@@ -11,8 +11,8 @@ exports.decadimento = async (req, res) => {
             [id_utente]);
         if (righe.length === 0) {
             await conn.rollback();
-            return res.status(200).json({
-                success: true,
+            return res.status(400).json({
+                success: false,
                 message: "Nessun pet attivo",
                 pet: null
             });
@@ -52,8 +52,8 @@ exports.stato = async (req, res) => {
         const [righe] = await pool.promise().execute("SELECT fame, felicita FROM pet_utente WHERE id_utente = ? AND pet_utente.attivo = 1",
             [id_utente]);
         if (righe.length === 0) {
-            return res.status(200).json({
-                success: true,
+            return res.status(400).json({
+                success: false,
                 message: "Nessun pet attivo",
                 stato: null
             });

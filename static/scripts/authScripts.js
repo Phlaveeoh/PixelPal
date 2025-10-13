@@ -17,7 +17,7 @@ async function handleLogin(event) {
     const data = await res.json();
 
     if (res.ok) {
-        window.location.href = '/private/pagina.html';
+        window.location.href = '/private/dashboard.html';
     } else {
         document.getElementById('message').innerText = data.message;
     }
@@ -45,7 +45,7 @@ async function handleRegister(event) {
     const data = await res.json();
 
     if (res.ok) {
-        window.location.href = '/private/pagina.html';
+        window.location.href = '/private/dashboard.html';
     } else {
         document.getElementById('message').innerText = data.message;
     }
