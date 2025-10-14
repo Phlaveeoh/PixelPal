@@ -3,7 +3,6 @@ const router = express.Router();
 const itemController = require("../controllers/itemController");
 const { authenticateToken } = require("../servizi/servizioAutenticazione");
 
-router.get("/cibi", authenticateToken, itemController.getCibi);
-router.get("/giochi", authenticateToken, itemController.getGiochi);
+router.get("/", authenticateToken, itemController.getItems);
 
 module.exports = router;

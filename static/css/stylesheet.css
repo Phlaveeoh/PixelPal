@@ -1,0 +1,16 @@
+#areaPet {
+    position: relative;
+    width: 320px;
+    height: 160px;
+    background-color: #d0f0ff;
+    border: black 2px solid;
+    overflow: hidden;
+}
+
+.sprite {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+}

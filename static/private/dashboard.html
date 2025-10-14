@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PixelPal</title>
+    <link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 
 <body>
@@ -14,17 +15,17 @@
             <button onclick="location.href='user.html'">info utente</button>
         </nav>
     </header>
-    <div>
+    <main>
         <div id="areaPet">
-            <img id="immaginePet" src="">
-            <img id="oggetto" src="">
+            <div id="immaginePet" class="sprite" src=""></div>
+            <div id="oggetto" class="sprite" src=""></div>
         </div>
         <div id="pulsantiera">
             <button onclick="location.href='stato.html'">Statistiche</button>
-            <button onclick="location.href='itemList.html?tipo=cibi'">Nutri</button>
-            <button onclick="location.href='itemList.html?tipo=giochi'">Gioca</button>
+            <button onclick="location.href='itemList.html?tipo=cibo'">Nutri</button>
+            <button onclick="location.href='itemList.html?tipo=gioco'">Gioca</button>
         </div>
-    </div>
+    </main>
     <footer>
         <p>&copy; 2025 PixelPal. Tutti i diritti riservati.</p>
     </footer>
