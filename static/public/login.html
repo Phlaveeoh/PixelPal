@@ -5,36 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-
+    <link rel="stylesheet" href="/css/stylesheet.css">
 </head>
 
 <body>
-    <h1>Benvenuto nella pagina di login</h1>
-    <form id="loginForm">
-        <label for="loginUsername">Nome utente:</label>
-        <input type="text" id="loginUsername" name="username" required>
-        <br>
-        <label for="loginPassword">Password:</label>
-        <input type="password" id="loginPassword" name="password" required>
-        <br>
-        <button type="submit">Accedi</button>
-    </form>
-
-    <form id="registerForm">
-        <label for="registerUsername">Nome utente:</label>
-        <input type="text" id="registerUsername" name="username" required>
-        <br>
-        <label for="registerPassword">Password:</label>
-        <input type="password" id="registerPassword" name="password" required>
-        <br>
-        <label for="registerConfermaPassword">Conferma password:</label>
-        <input type="password" id="registerConfermaPassword" name="confermaPassword" required>
-        <br>
-        <button type="submit">Registrati</button>
-    </form>
-
-    <div id="message"></div>
-
+    <header>
+        <h1>Benvenuto nella pagina di login</h1>
+    </header>
+    <main>
+        <div class="tab-container">
+            <div class="tab-header">
+                <button class="tab-btn" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="register">Register</button>
+            </div>
+            <div class="tab-content" id="login-tab">
+                <form id="loginForm">
+                    <label for="loginUsername">Nome utente:</label>
+                    <input type="text" id="loginUsername" name="username" required>
+                    <br>
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                    <br>
+                    <button type="submit">Accedi</button>
+                </form>
+            </div>
+            <div class="tab-content" id="register-tab">
+                <form id="registerForm">
+                    <label for="registerUsername">Nome utente:</label>
+                    <input type="text" id="registerUsername" name="username" required>
+                    <br>
+                    <label for="registerPassword">Password:</label>
+                    <input type="password" id="registerPassword" name="password" required>
+                    <br>
+                    <label for="registerConfermaPassword">Conferma password:</label>
+                    <input type="password" id="registerConfermaPassword" name="confermaPassword" required>
+                    <br>
+                    <button type="submit">Registrati</button>
+                </form>
+            </div>
+        </div>
+        <div id="message"></div>
+    </main>
+    <footer>
+        <p>&copy; 2025 PixelPal. Tutti i diritti riservati.</p>
+    </footer>
     <script src="/scripts/authScripts.js"></script>
 </body>
 
