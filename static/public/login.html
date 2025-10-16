@@ -15,31 +15,36 @@
     <main>
         <div class="tab-container">
             <div class="tab-header">
-                <button class="tab-btn" data-tab="login">Login</button>
-                <button class="tab-btn" data-tab="register">Register</button>
+                <div class="tab-btn active" data-tab="login">Login</div>
+                <div class="tab-btn" data-tab="register">Register</div>
             </div>
-            <div class="tab-content" id="login-tab">
+            <div class="tab-content active" id="login-tab">
                 <form id="loginForm">
-                    <label for="loginUsername">Nome utente:</label>
-                    <input type="text" id="loginUsername" name="username" required>
-                    <br>
-                    <label for="loginPassword">Password:</label>
-                    <input type="password" id="loginPassword" name="password" required>
-                    <br>
+                    <div class="form-row">
+                        <label for="loginUsername">Nome utente:</label>
+                        <input type="text" id="loginUsername" name="username" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="loginPassword">Password:</label>
+                        <input type="password" id="loginPassword" name="password" required>
+                    </div>
                     <button type="submit">Accedi</button>
                 </form>
             </div>
             <div class="tab-content" id="register-tab">
                 <form id="registerForm">
-                    <label for="registerUsername">Nome utente:</label>
-                    <input type="text" id="registerUsername" name="username" required>
-                    <br>
-                    <label for="registerPassword">Password:</label>
-                    <input type="password" id="registerPassword" name="password" required>
-                    <br>
-                    <label for="registerConfermaPassword">Conferma password:</label>
-                    <input type="password" id="registerConfermaPassword" name="confermaPassword" required>
-                    <br>
+                    <div class="form-row">
+                        <label for="registerUsername">Nome utente:</label>
+                        <input type="text" id="registerUsername" name="username" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="registerPassword">Password:</label>
+                        <input type="password" id="registerPassword" name="password" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="registerConfermaPassword">Conferma password:</label>
+                        <input type="password" id="registerConfermaPassword" name="confermaPassword" required>
+                    </div>
                     <button type="submit">Registrati</button>
                 </form>
             </div>

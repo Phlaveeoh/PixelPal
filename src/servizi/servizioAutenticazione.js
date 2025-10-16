@@ -4,7 +4,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 function authenticateToken(req, res, next) {
     const token = req.cookies.token;
     if (!token) {
-        return res.redirect(302, "/index.html");
+        return res.redirect(302, "/login.html");
     }
     try {
         const payload = jwt.verify(token, JWT_SECRET);
@@ -12,7 +12,7 @@ function authenticateToken(req, res, next) {
         next();
     }
     catch (err) {
-        return res.redirect(302, "/index.html");
+        return res.redirect(302, "/login.html");
     }
 };
 

@@ -1,4 +1,4 @@
-let larghezzaFrame = 32;
+import { startPetAnimation } from '/scripts/animazioniScript.js';
 
 window.onload = async () => {
 
@@ -42,34 +42,9 @@ window.onload = async () => {
     if (res.ok) {
         const data = await res.json();
         const pet = data.pet;
-        console.log(pet);
         let petFrame = document.getElementById("immaginePet");
         petFrame.style.backgroundImage = `url(${pet.url_pet})`;
-        petFrame.style.backgroundPosition = `${-0 * larghezzaFrame}px 0`;
-
-        //SOLUZIONE TEMPORANEA DA METTERE IN UN FILE A PARTE DOVE GESTIRE LE ANIMAZIONI ED IL MOVIMENTO
-        const area = document.getElementById("areaPet");
-
-        let x = 0;
-        let y = 0;
-
-        function muovi(dx, dy) {
-            const maxX = area.clientWidth - 32;
-            const maxY = area.clientHeight - 32;
-
-            x = Math.max(0, Math.min(maxX, x + dx));
-            y = Math.max(0, Math.min(maxY, y + dy));
-
-            petFrame.style.left = `${x}px`;
-            petFrame.style.top = `${y}px`;
-        }
-
-        // esempio: movimento automatico
-        setInterval(() => {
-            const dx = (Math.random() - 0.5) * 20;
-            const dy = (Math.random() - 0.5) * 20;
-            muovi(dx, dy);
-        }, 50);
-
+        petFrame.style.backgroundPosition = `${-0 * 32}px 0`;
+        startPetAnimation();
     }
 }
