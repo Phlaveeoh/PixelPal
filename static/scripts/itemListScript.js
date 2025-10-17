@@ -16,10 +16,29 @@ function caricaItems(items, tipo, soldi) {
 
         const li = document.createElement("li");
 
-        li.innerHTML = `<img src="${itemUrl}" alt="${item.nome}"><br>
-                        <span>${item.nome} - Costo: ${item.costo}</span>`;
+        // Assegna i dati una sola volta
         li.dataset.id = itemId;
         li.dataset.tipo = tipo;
+
+        // --- Creazione e Assemblaggio del DOM ---
+
+        // 3. Crea e configura il DIV (Sprite)
+        const divOggetto = document.createElement("div");
+        divOggetto.className = "sprite";
+        divOggetto.style.backgroundImage = `url(${itemUrl})`;
+        divOggetto.style.backgroundPosition = `${-0 * 32}px 0`;
+        divOggetto.dataset.tipo = tipo
+
+        // 4. Crea e configura lo Span (Nome e Costo)
+        const spanTesto = document.createElement("span");
+        spanTesto.textContent = `${item.nome} - Costo: ${item.costo}`;
+
+        // 5. Assembla LI (usa appendChild per evitare innerHTML + stringa)
+        li.appendChild(divOggetto);
+        li.appendChild(document.createElement("br")); // Manteniamo il <br> per il layout
+        li.appendChild(spanTesto);
+
+        ul.appendChild(li);
 
         if (soldi >= item.costo) {
             li.className = "itemAcquistabile";

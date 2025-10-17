@@ -43,6 +43,7 @@ window.onload = async () => {
         const data = await res.json();
         const pet = data.pet;
         let petFrame = document.getElementById("immaginePet");
+        petFrame.dataset.tipo = "pet"
         petFrame.style.backgroundImage = `url(${pet.url_pet})`;
         petFrame.style.backgroundPosition = `${-0 * 32}px 0`;
         startPetAnimation();

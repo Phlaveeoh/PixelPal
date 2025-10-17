@@ -124,11 +124,44 @@ footer {
     padding: 20px 0;
 }
 
+.shell {
+    /* 1. Dimensionamento e Centratura */
+    width: 30%;
+    /* Altezza maggiore della larghezza per l'ovale */
+    margin: 0 auto;
+    /* Centra orizzontalmente con un margine superiore/inferiore */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Distribuisce lo spazio tra areaPet e pulsantiera */
+    padding-top: 3em;
+    padding-bottom: 3em;
+    /* Spazio interno */
+
+    /* 2. Forma e Colore (Simulazione della plastica) */
+    background-color: #f0f0f0;
+    /* Colore della scocca (es. grigio chiaro) */
+    border: 3px solid #333;
+
+    /* 3. FORMA OVALE (Il trucco del Tamagotchi) */
+    /* Crea una forma allungata (tipo uovo) */
+    border-radius: 55% / 60%;
+    /* Spiegazione: 50% per i lati orizzontali e 60% per i lati verticali */
+
+    /* 4. Ombreggiatura (Per dare un senso di profondità 3D) */
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0.2),
+        /* Ombra interna soft */
+        0 10px 20px rgba(0, 0, 0, 0.4);
+    /* Ombra esterna per sollevare la shell */
+}
+
 /* Area pet */
 #areaPet {
     position: relative;
-    width: 15%;
-    padding-top: 15%;
+    width: 50%;
+    padding-top: 50%;
     height: 0;
     background-image: url("/immagini/sfondi/sfondo.png");
     background-size: cover;
@@ -141,16 +174,30 @@ footer {
 
 .sprite {
     position: absolute;
-    width: 64px;
-    height: 64px;
-    background-size: 1280px 64px;
     background-repeat: no-repeat;
     image-rendering: pixelated;
     transition: left 1.5s ease-out;
 }
 
+.sprite[data-tipo="pet"] {
+    width: 64px;
+    height: 64px;
+    background-size: 1280px 64px;
+}
+
+.sprite[data-tipo="cibo"] {
+    width: 64px;
+    height: 64px;
+    background-size: 192px 64px;
+}
+
+.sprite[data-tipo="gioco"] {
+    width: 64px;
+    height: 64px;
+    background-size: 64px 64px;
+}
+
 #pulsantiera {
-    flex: 1;
     padding-top: 1em;
 }
 
@@ -164,4 +211,53 @@ footer {
     width: 32px;
     height: 32px;
     image-rendering: pixelated;
+}
+
+#itemList {
+    display: flex;
+    /* Affianca le carte orizzontalmente */
+    flex-wrap: wrap;
+    /* Permette alle carte di andare a capo */
+    justify-content: center;
+    /* Centra le carte nella riga */
+    list-style: none;
+    /* Rimuovi i pallini della lista */
+    padding: 0;
+    margin: 20px auto;
+    width: 90%;
+}
+
+li {
+    /* Dimensione e stile della carta */
+    display: flex;
+    flex-direction: column;
+    /* Impila l'immagine e il testo verticalmente */
+    align-items: center;
+    /* Centra orizzontalmente l'immagine e il testo */
+
+    width: 120px;
+    /* Larghezza fissa della carta */
+    min-height: 150px;
+    /* Altezza minima */
+    margin: 10px;
+    padding: 10px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Sovrascrittura dello sprite per la lista */
+li .sprite {
+    position: static;
+    display: block;
+    margin: 5px auto 10px auto;
+}
+
+li span {
+    margin-top: auto;   
+    font-size: 0.9em;
+    padding-top: 5px;
 }
