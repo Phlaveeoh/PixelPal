@@ -16,7 +16,6 @@ body {
     flex-direction: column;
     font-family: "tamaFont";
     height: 100vh;
-    overflow: hidden;
 }
 
 input,
@@ -26,16 +25,32 @@ button {
 
 header {
     flex-shrink: 0;
-    text-align: center;
-    padding: 20px 0;
+    padding: 2em 2em 0 2em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header h1 {
+    margin-right: auto;
+    padding-right: 10px;
+}
+
+header button {
+    width: 100px;
+    height: 100px;
+}
+
+button img {
+    image-rendering: pixelated;
 }
 
 main {
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 .tab-container {
@@ -125,36 +140,20 @@ footer {
 }
 
 .shell {
-    /* 1. Dimensionamento e Centratura */
     width: 30%;
-    /* Altezza maggiore della larghezza per l'ovale */
     margin: 0 auto;
-    /* Centra orizzontalmente con un margine superiore/inferiore */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Distribuisce lo spazio tra areaPet e pulsantiera */
     padding-top: 3em;
     padding-bottom: 3em;
-    /* Spazio interno */
-
-    /* 2. Forma e Colore (Simulazione della plastica) */
-    background-color: #f0f0f0;
-    /* Colore della scocca (es. grigio chiaro) */
+    background-image: url("/immagini/sfondi/shell.png");
     border: 3px solid #333;
-
-    /* 3. FORMA OVALE (Il trucco del Tamagotchi) */
-    /* Crea una forma allungata (tipo uovo) */
     border-radius: 55% / 60%;
-    /* Spiegazione: 50% per i lati orizzontali e 60% per i lati verticali */
-
-    /* 4. Ombreggiatura (Per dare un senso di profondità 3D) */
     box-shadow:
         inset 0 0 10px rgba(0, 0, 0, 0.2),
-        /* Ombra interna soft */
         0 10px 20px rgba(0, 0, 0, 0.4);
-    /* Ombra esterna per sollevare la shell */
 }
 
 /* Area pet */
@@ -162,10 +161,12 @@ footer {
     position: relative;
     width: 50%;
     padding-top: 50%;
+    margin-top: 2em;
     height: 0;
     background-image: url("/immagini/sfondi/sfondo.png");
     background-size: cover;
     background-repeat: no-repeat;
+    image-rendering: pixelated;
     border: 2px solid black;
     overflow: hidden;
     border-radius: 5px;
@@ -198,66 +199,94 @@ footer {
 }
 
 #pulsantiera {
-    padding-top: 1em;
+    padding-top: 3em;
+    white-space: nowrap;
+    /* Impedisce che il contenuto vada a capo */
 }
 
 #pulsantiera button {
-    width: 80px;
-    height: 80px;
+    width: 5vw;
+    height: 5vw;
+
     border-radius: 50%;
+
+    min-width: 50px;
+    min-height: 50px;
+    padding: 0;
+    margin: 0 5px;
 }
 
 #pulsantiera button img {
-    width: 32px;
-    height: 32px;
-    image-rendering: pixelated;
+    width: 60%;
 }
 
 #itemList {
     display: flex;
-    /* Affianca le carte orizzontalmente */
     flex-wrap: wrap;
-    /* Permette alle carte di andare a capo */
     justify-content: center;
-    /* Centra le carte nella riga */
     list-style: none;
-    /* Rimuovi i pallini della lista */
     padding: 0;
-    margin: 20px auto;
     width: 90%;
 }
 
 li {
-    /* Dimensione e stile della carta */
     display: flex;
     flex-direction: column;
-    /* Impila l'immagine e il testo verticalmente */
     align-items: center;
-    /* Centra orizzontalmente l'immagine e il testo */
-
-    width: 120px;
-    /* Larghezza fissa della carta */
-    min-height: 150px;
-    /* Altezza minima */
+    text-align: center;
+    min-width: 250px;
+    width: 25%;
+    height: 30vh;
+    justify-content: center;
+    cursor: pointer;
     margin: 10px;
-    padding: 10px;
-
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    text-align: center;
 }
 
-/* Sovrascrittura dello sprite per la lista */
 li .sprite {
     position: static;
     display: block;
-    margin: 5px auto 10px auto;
+    align-items: center;
 }
 
 li span {
-    margin-top: auto;   
-    font-size: 0.9em;
-    padding-top: 5px;
+    text-align: center;
+}
+
+#stats {
+    width: 60%;
+    justify-content: center;
+}
+
+.status-bar {
+    width: 70%;
+    height: 2em;
+    background-color: #eee;
+    border: 2px solid #333;
+    overflow: hidden;
+}
+
+.status-fill {
+    height: 100%;
+    background-color: yellow;
+    width: calc(var(--status-value) * 1%);
+}
+
+.status-bar-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.status-label {
+    margin-right: auto;
+    width: 60px;
+}
+
+@media screen and (max-width: 768px) {
+    .shell {
+        width: 70%;
+    }
 }

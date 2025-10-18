@@ -12,15 +12,25 @@
     <header>
         <h1>Benvenuto in PixelPal</h1>
         <nav>
-            <button onclick="location.href='dashboard.html'">Indietro</button>
+            <button onclick="location.href='dashboard.html'"><img src="/immagini/icone/iconaIndietro.png"></button>
         </nav>
     </header>
     <main>
         <div id="stats">
-            <h2>Statistiche del tuo pet</h2>
-            <p><span id="nome"></span></p>
-            <p>Fame: <span id="fame"></span></p>
-            <p>Felicita': <span id="felicita"></span></p>
+            <span id="nomePet"></span>
+            <div class="status-bar-container">
+                <div class="status-label">Fame:</div>
+                <div class="status-bar" data-status-name="fame">
+                    <div class="status-fill"></div>
+                </div>
+            </div>
+
+            <div class="status-bar-container">
+                <div class="status-label">Felicita':</div>
+                <div class="status-bar" data-status-name="felicita">
+                    <div class="status-fill"></div>
+                </div>
+            </div>
         </div>
     </main>
     <footer>

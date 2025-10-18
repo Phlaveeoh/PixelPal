@@ -42,6 +42,7 @@ window.onload = async () => {
     if (res.ok) {
         const data = await res.json();
         const pet = data.pet;
+        localStorage.setItem("nomePet", pet.nome);
         let petFrame = document.getElementById("immaginePet");
         petFrame.dataset.tipo = "pet"
         petFrame.style.backgroundImage = `url(${pet.url_pet})`;

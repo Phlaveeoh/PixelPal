@@ -3,10 +3,11 @@ const petFrame = document.getElementById("immaginePet");
 const speed = 4;
 let x, y, vx;
 
-// Funzione di setup iniziale
+const larghezzaFrame = 64; // La larghezza di un singolo frame in pixel
+const nFrames = 17;  // Il numero totale di frame
 function initPetAnimation() {
     x = (area.clientWidth / 2) - 32;
-    y = area.clientHeight - 128;
+    y = (area.clientHeight - 64) * 0.9;
     vx = 0;
 
     petFrame.style.left = `${x}px`;
@@ -21,6 +22,14 @@ function scegliDestinazioneCasuale() {
     petFrame.style.left = `${destinazioneX}px`;
 
     x = destinazioneX;
+
+    cambiaFrameCasuale();
+}
+
+function cambiaFrameCasuale() {
+    const frameIndex = Math.floor(Math.random() * nFrames);
+    const backgroundX = -(frameIndex * larghezzaFrame);
+    petFrame.style.backgroundPositionX = `${backgroundX}px`;
 }
 
 // --- Funzione di Avvio Esportata ---
