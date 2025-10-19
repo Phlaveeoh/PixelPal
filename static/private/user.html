@@ -10,11 +10,61 @@
 
 <body>
     <header>
-        <h1>Benvenuto in PixelPal</h1>
+        <h1>Gestione Account</h1>
         <nav>
             <button onclick="location.href='dashboard.html'"><img src="/immagini/icone/iconaIndietro.png"></button>
         </nav>
     </header>
+    <main>
+        <div class="tab-container">
+            <div class="tab-header">
+                <div class="tab-btn active" data-tab="user">Info Utente</div>
+                <div class="tab-btn" data-tab="password">Cambia Password</div>
+                <div class="tab-btn" data-tab="pet">Gestisci Pet</div>
+            </div>
+            <div class="tab-content active" id="user-tab">
+                <form id="userForm">
+                    <div class="form-row">
+                        <label for="Username">Username:</label>
+                        <input type="text" id="username" name="username">
+                    </div>
+                    <div class="form-row">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" name="nome">
+                    </div>
+                    <div class="form-row">
+                        <label for="cognome">Cognome:</label>
+                        <input type="text" id="cognome" name="cognome">
+                    </div>
+                    <button type="submit">Aggiorna Info</button>
+                </form>
+            </div>
+            <div class="tab-content" id="password-tab">
+                <form id="passwordForm">
+                    <div class="form-row">
+                        <label for="passwordAttuale">Password Attuale:</label>
+                        <input type="password" id="passwordAttuale" name="passwordAttuale" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="passwordNuova">Nuova Password:</label>
+                        <input type="password" id="passwordNuova" name="passwordNuova" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="confermaPasswordNuova">Conferma password:</label>
+                        <input type="password" id="confermaPasswordNuova" name="confermaPasswordNuova" required>
+                    </div>
+                    <button type="submit">Cambia Password</button>
+                </form>
+            </div>
+            <div class="tab-content" id="pet-tab">
+            </div>
+        </div>
+        <div id="message"></div>
+    </main>
+    <footer>
+        <p>&copy; 2025 PixelPal. Tutti i diritti riservati.</p>
+    </footer>
+    <script src="/scripts/userScript.js"></script>
 </body>
 
 </html>
