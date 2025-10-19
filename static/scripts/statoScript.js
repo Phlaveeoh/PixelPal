@@ -12,8 +12,8 @@ window.onload = async () => {
         barre[0].style.setProperty('--status-value', stato.fame);
         barre[1].style.setProperty('--status-value', stato.felicita);
 
-        const nomePet = localStorage.getItem("nomePet")
-        document.getElementById("nomePet").innerText = nomePet;
+        const pet = JSON.parse(localStorage.getItem("pet"));
+        document.getElementById("nomePet").innerText = pet.nome;
     } else {
         console.log("Errore nel recupero dello stato");
     }

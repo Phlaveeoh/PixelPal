@@ -289,4 +289,29 @@ li span {
     .shell {
         width: 70%;
     }
+
+    .sprite[data-tipo="pet"] {
+        width: 32px;
+        height: 32px;
+        background-size: 640px 32px;
+    }
+
+    .sprite[data-tipo="cibo"] {
+        width: 32px;
+        height: 32px;
+        background-size: 96px 32px;
+    }
+
+    .sprite[data-tipo="gioco"] {
+        width: 32px;
+        height: 32px;
+        background-size: 32px 32px;
+    }
+
+    li .sprite {
+        width: 64px !important;
+        height: 64px !important;
+        background-size: 192px 64px !important;
+    }
+
 }

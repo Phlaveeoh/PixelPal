@@ -19,10 +19,10 @@ function caricaItems(items, tipo, soldi) {
         // Assegna i dati una sola volta
         li.dataset.id = itemId;
         li.dataset.tipo = tipo;
+        li.dataset.url = itemUrl;
 
         // --- Creazione e Assemblaggio del DOM ---
 
-        // 3. Crea e configura il DIV (Sprite)
         const divOggetto = document.createElement("div");
         divOggetto.className = "sprite";
         divOggetto.style.backgroundImage = `url(${itemUrl})`;
@@ -54,7 +54,8 @@ function caricaItems(items, tipo, soldi) {
         if (!target) return;
         localStorage.setItem("itemSelezionato", JSON.stringify({
             id: target.dataset.id,
-            tipo: target.dataset.tipo
+            tipo: target.dataset.tipo,
+            url: target.dataset.url
         }));
         window.location.href = "dashboard.html";
     });
