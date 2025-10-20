@@ -117,6 +117,8 @@ tabButtons.forEach(button => {
     });
 });
 
+
+//Gestione del popup
 const deleteBtn = document.getElementById('delete-btn');
 const popup = document.getElementById('delete-popup');
 const cancelDelete = document.getElementById('cancel-delete');
@@ -131,8 +133,10 @@ cancelDelete.addEventListener('click', () => {
 });
 
 confirmDelete.addEventListener('click', async () => {
-    const password = document.getElementById('confirmPassword').value;
-    if (!password) return;
+    const password = document.getElementById('confermaPassword').value;
+    if (!password) {
+        return;
+    }
 
     const res = await fetch('http://localhost:3000/api/user/elimina', {
         method: 'DELETE',
