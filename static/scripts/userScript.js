@@ -1,3 +1,106 @@
+document.getElementById('update-btn').addEventListener('click', handleUpdateInfo);
+document.getElementById('logout-btn').addEventListener('click', handleLogout);
+document.getElementById('delete-btn').addEventListener('click', handleDeleteUser);
+document.getElementById('passwordForm').addEventListener('submit', handleCambiaPassword);
+document.getElementById('adotta-btn').addEventListener('click', handleAdozione);
+document.getElementById('libera-btn').addEventListener('click', handleLiberazione);
+
+async function handleUpdateInfo() {
+    const nome = document.getElementById('nome').value;
+    const cognome = document.getElementById('cognome').value;
+
+    const res = await fetch('http://localhost:3000/api/user/update', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, cognome }),
+        credentials: 'include'
+    });
+
+    if (res.ok) {
+        location.reload();
+    }
+}
+
+async function handleLogout() {
+    const res = await fetch('http://localhost:3000/api/auth/logout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+    });
+
+    if (res.ok) {
+        location.reload();
+    }
+}
+
+async function handleDeleteUser() {
+}
+
+async function handleCambiaPassword(event) {
+    event.preventDefault();
+
+    const passwordAttuale = document.getElementById('passwordAttuale').value;
+    const passwordNuova = document.getElementById('passwordNuova').value;
+    const confermaPasswordNuova = document.getElementById('confermaPasswordNuova').value;
+    if (passwordNuova === confermaPasswordNuova) {
+        const res = await fetch('http://localhost:3000/api/user/cambiaPassword', {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+            body: JSON.stringify({ vecchiaPassword: passwordAttuale, nuovaPassword: passwordNuova }),
+        });
+        if (res.ok) {
+            location.reload();
+        }
+    } else {
+        document.getElementById("message").innerText = "Le due nuove password devono essere le stesse!";
+    }
+}
+
+async function handleAdozione() {
+    const res = await fetch('http://localhost:3000/api/pet/adotta', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+    });
+    if (res.ok) {
+        window.location.href = '/private/dashboard.html';
+    } else {
+        const data = await res.json();
+        document.getElementById("message").innerText = data.message;
+    }
+}
+
+async function handleLiberazione() {
+    const res = await fetch('http://localhost:3000/api/pet/libera', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+    });
+    if (res.ok) {
+        localStorage.clear();
+        window.location.href = '/private/dashboard.html';
+    } else {
+        const data = await res.json();
+        document.getElementById("message").innerText = data.message;
+    }
+}
+
+window.onload = async () => {
+    const res = await fetch('http://localhost:3000/api/user', {
+        method: 'GET',
+        credentials: 'include'
+    });
+
+    if (res.ok) {
+        const data = await res.json();
+        const utente = data.utente;
+        document.getElementById("username").value = utente.username;
+        document.getElementById("nome").value = utente.nome;
+        document.getElementById("cognome").value = utente.cognome;
+    }
+}
+
 // Gestione dei tab
 const tabButtons = document.querySelectorAll('.tab-btn');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -12,4 +115,32 @@ tabButtons.forEach(button => {
         button.classList.add('active');
         document.getElementById(`${tabId}-tab`).classList.add('active');
     });
+});
+
+const deleteBtn = document.getElementById('delete-btn');
+const popup = document.getElementById('delete-popup');
+const cancelDelete = document.getElementById('cancel-delete');
+const confirmDelete = document.getElementById('confirm-delete');
+
+deleteBtn.addEventListener('click', () => {
+    popup.classList.remove('hidden');
+});
+
+cancelDelete.addEventListener('click', () => {
+    popup.classList.add('hidden');
+});
+
+confirmDelete.addEventListener('click', async () => {
+    const password = document.getElementById('confirmPassword').value;
+    if (!password) return;
+
+    const res = await fetch('http://localhost:3000/api/user/elimina', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+    });
+
+    if (res.ok) {
+        location.reload();
+    }
 });

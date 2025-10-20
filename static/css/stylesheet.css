@@ -284,6 +284,36 @@ li span {
     width: 60px;
 }
 
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-actions {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
 @media screen and (max-width: 768px) {
     .shell {
         width: 70%;
@@ -307,10 +337,15 @@ li span {
         background-size: 32px 32px;
     }
 
-    li .sprite {
+    li .sprite[data-tipo="cibo"] {
         width: 64px !important;
         height: 64px !important;
         background-size: 192px 64px !important;
     }
 
+    li .sprite[data-tipo="gioco"] {
+        width: 64px !important;
+        height: 64px !important;
+        background-size: 64px 64px !important;
+    }
 }

@@ -26,7 +26,7 @@
                 <form id="userForm">
                     <div class="form-row">
                         <label for="Username">Username:</label>
-                        <input type="text" id="username" name="username">
+                        <input type="text" id="username" name="username" disabled>
                     </div>
                     <div class="form-row">
                         <label for="nome">Nome:</label>
@@ -36,7 +36,9 @@
                         <label for="cognome">Cognome:</label>
                         <input type="text" id="cognome" name="cognome">
                     </div>
-                    <button type="submit">Aggiorna Info</button>
+                    <button id="update-btn" type="button">Aggiorna Info</button>
+                    <button id="logout-btn" type="button">Logout</button>
+                    <button id="delete-btn" type="button">Elimina Account</button>
                 </form>
             </div>
             <div class="tab-content" id="password-tab">
@@ -57,9 +59,24 @@
                 </form>
             </div>
             <div class="tab-content" id="pet-tab">
+                <form id="petForm">
+                    <button id="adotta-btn" type="button">Adotta un nuovo pet</button>
+                    <button id="libera-btn" type="button">Libera il tuo pet!</button>
+                </form>
             </div>
         </div>
         <div id="message"></div>
+        <div id="delete-popup" class="popup hidden">
+            <div class="popup-content">
+                <h3>Conferma eliminazione account</h3>
+                <p>Inserisci la tua password per confermare:</p>
+                <input type="password" id="confirmPassword" placeholder="Password">
+                <div class="popup-actions">
+                    <button id="confirm-delete">Conferma</button>
+                    <button id="cancel-delete">Annulla</button>
+                </div>
+            </div>
+        </div>
     </main>
     <footer>
         <p>&copy; 2025 PixelPal. Tutti i diritti riservati.</p>

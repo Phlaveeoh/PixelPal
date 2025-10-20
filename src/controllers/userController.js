@@ -16,6 +16,7 @@ exports.getInfo = async (req, res) => {
             success: true,
             message: "Informazioni utente recuperate con successo",
             utente: {
+                username: utente.username,
                 nome: utente.nome,
                 cognome: utente.cognome,
                 soldi: utente.soldi

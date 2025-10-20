@@ -263,7 +263,7 @@ exports.adotta = async (req, res) => {
             await conn.rollback();
             return res.status(400).json({
                 success: false,
-                message: "Hai già un pet attivo"
+                message: "Hai gia' un pet attivo"
             });
         }
 
@@ -294,6 +294,51 @@ exports.adotta = async (req, res) => {
             message: "Errore del server"
         });
     } finally {
+        conn.release();
+    }
+};
+
+exports.libera = async (req, res) => {
+    const id_utente = req.user.userId;
+    const conn = await pool.promise().getConnection();
+    try {
+        await conn.beginTransaction();
+
+        // Controlla se l'utente ha un pet attivo
+        const [petsAttivi] = await conn.execute(
+            "SELECT id_pet_utente FROM pet_utente WHERE id_utente = ? AND attivo = 1;",
+            [id_utente]
+        );
+
+        if (petsAttivi.length == 0) {
+            await conn.rollback();
+            return res.status(400).json({
+                success: false,
+                message: "Non hai nessun pet attivo"
+            });
+        }
+
+        await conn.execute(
+            "UPDATE pet_utente SET attivo = 0 WHERE id_utente = ? AND attivo = 1",
+            [id_utente]
+        );
+
+        await conn.commit();
+
+        return res.status(200).json({
+            success: true,
+            message: "Pet liberato con successo"
+        });
+
+    } catch (error) {
+        await conn.rollback();
+        console.error("Errore nella liberazione del pet", error);
+        return res.status(500).json({
+            success: false,
+            message: "Errore del server"
+        });
+    }
+    finally {
         conn.release();
     }
 };

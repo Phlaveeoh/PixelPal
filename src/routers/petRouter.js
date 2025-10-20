@@ -8,5 +8,6 @@ router.get("/stato", authenticateToken, petController.stato);
 router.patch("/nutri", authenticateToken, petController.nutri);
 router.patch("/gioca", authenticateToken, petController.gioca);
 router.post("/adotta", authenticateToken, petController.adotta);
+router.patch("/libera", authenticateToken, petController.libera);
 
 module.exports = router;
