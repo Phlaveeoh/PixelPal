@@ -160,6 +160,7 @@ form button {
     padding: 0.5em;
 }
 
+/*Stile del footer*/
 footer {
     flex-shrink: 0;
     text-align: center;
@@ -167,6 +168,7 @@ footer {
     font-size: clamp(0.8rem, 1vw, 1.2rem);
 }
 
+/*La shell è il contenitore dell'area del gioco e della pulsantiera*/
 .shell {
     width: 30%;
     margin: 0 auto;
@@ -184,6 +186,7 @@ footer {
         0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
+/*Lo schermo dove si muoverà il pet*/
 #areaPet {
     position: relative;
     width: 50%;
@@ -200,17 +203,19 @@ footer {
     box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
+/*Codice che gestisce gli sprite*/
 .sprite {
     position: absolute;
     background-repeat: no-repeat;
     image-rendering: pixelated;
-    transition: left 1.5s ease-out;
 }
 
+/*Gli sprite vanno gestiti in base al tipo*/
 .sprite[data-tipo="pet"] {
     width: 64px;
     height: 64px;
     background-size: 1280px 64px;
+    transition: left 1.5s ease-out;
 }
 
 .sprite[data-tipo="cibo"] {
@@ -225,17 +230,17 @@ footer {
     background-size: 64px 64px;
 }
 
+/*Contenitore per i pulsanti della shell*/
 #pulsantiera {
     padding-top: 3em;
     white-space: nowrap;
 }
 
+/*I bottoni sono tondi con un'icona dentro ognuno*/
 #pulsantiera button {
     width: 5vw;
     height: 5vw;
-
     border-radius: 50%;
-
     min-width: 50px;
     min-height: 50px;
     padding: 0;
@@ -247,6 +252,7 @@ footer {
     height: 60%;
 }
 
+/*itemList è l'ul che contiene gli oggetti del negozio*/
 #itemList {
     display: flex;
     flex-wrap: wrap;
@@ -256,6 +262,7 @@ footer {
     width: 90%;
 }
 
+/*Ogni list item è composto dal'immagine dell'oggetto, il suo nome ed il suo costo*/
 li {
     display: flex;
     flex-direction: column;
@@ -272,6 +279,7 @@ li {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/*Gli sprite nel negozio non devono essere absolute ma statici*/
 li .sprite {
     position: static;
     display: block;
@@ -282,11 +290,13 @@ li span {
     text-align: center;
 }
 
+/*Contenitore per le statistiche del pet*/
 #stats {
     width: 60%;
     justify-content: center;
 }
 
+/*Rappresenta una barra vuota*/
 .status-bar {
     width: 70%;
     height: 2em;
@@ -295,11 +305,13 @@ li span {
     overflow: hidden;
 }
 
+/*Il riempimento della barra, la sua larghezza viene calcolata dinamicamente*/
 .status-fill {
     height: 100%;
     width: calc(var(--status-value) * 1%);
 }
 
+/*Contenitore per la singola barra*/
 .status-bar-container {
     display: flex;
     align-items: center;
@@ -311,6 +323,8 @@ li span {
     width: 60px;
 }
 
+/*Codice che gestisce il popup*/
+/*Il popup prende tutto lo schermo così che quando compare opacizzi tutto il resto*/
 .popup {
     position: fixed;
     top: 0;
@@ -323,10 +337,12 @@ li span {
     justify-content: center;
 }
 
+/*Inizialmente è nascosto*/
 .hidden {
     display: none;
 }
 
+/*Centra il contenuto del popup*/
 .popup-content {
     background: white;
     padding: 2em;
@@ -335,6 +351,7 @@ li span {
     text-align: center;
 }
 
+/*Pulsantiera del popup*/
 .popup-actions {
     margin-top: 15px;
     display: flex;
@@ -342,11 +359,14 @@ li span {
     gap: 10px;
 }
 
-@media screen and (max-width: 1200px) {
+/*Sotto i 1000px di schermo*/
+@media screen and (max-width: 1000px) {
+    /*Ingrandisco la shell per mantenere le proporzioni*/
     .shell {
         width: 40%;
     }
 
+    /*Dimezzo la grandezza di tutti gli sprite*/
     .sprite[data-tipo="pet"] {
         width: 32px;
         height: 32px;
@@ -365,6 +385,7 @@ li span {
         background-size: 32px 32px;
     }
 
+    /*Gli sprite degli oggetti del negozio però devono rimanere grandi*/
     li .sprite[data-tipo="cibo"] {
         width: 64px !important;
         height: 64px !important;
@@ -378,7 +399,9 @@ li span {
     }
 }
 
+/*sotto i 480px di grandezza*/
 @media screen and (max-width: 480px) {
+    /*Ingrandisco ancora la shell*/
     .shell {
         width: 70%;
     }
