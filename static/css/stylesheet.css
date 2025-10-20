@@ -121,7 +121,7 @@ main {
 
 /*Quando viene attivata la tab prende tutto lo spazio disponibile*/
 .tab-content.active {
-    max-height: 100vh;
+    max-height: 1000%;
     padding-top: 20px;
     padding-bottom: 20px;
 }
