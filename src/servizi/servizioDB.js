@@ -1,5 +1,6 @@
 const mysql = require("mysql2");
 
+//Creazione di un connection pool con i dati del file .env
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -10,4 +11,5 @@ const pool = mysql.createPool({
   queueLimit: 0
 });
 
+//Esporto il modulo per utilizzarlo in altri file
 module.exports = pool;

@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET; //Importo la chiave dal file .env
 
+//Middleware per autenticare un token JWT, se token invalido rimanda a login.html
 function authenticateToken(req, res, next) {
     const token = req.cookies.token;
     if (!token) {
