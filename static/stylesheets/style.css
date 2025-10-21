@@ -1,3 +1,24 @@
+:root {
+    --colore-sfondo: #d0f0ff;
+    --colore-bordo: #222;
+    --colore-testo: #111;
+
+    --colore-1: #fff3b0;
+    --colore-2: #ffe28a;
+    --colore-3: #fff7c0;
+
+    --colore-errore: #ff595e;
+
+    --colore-bottone: #d0f0ff;
+    --colore-bottone-hover: #7fd5fd;
+    --colore-bottone-testo: #000;
+
+    --colore-bottone-pericoloso-hover: #fa353c;
+
+    --colore-ombra: rgba(0, 0, 0, 0.3);
+    --colore-ombra-interna: rgba(0, 0, 0, 0.5);
+}
+
 /*Font Personalizzato*/
 @font-face {
     font-family: "tamaFont";
@@ -25,6 +46,8 @@ body {
     display: flex;
     flex-direction: column;
     font-family: "tamaFont";
+    color: var(--colore-testo);
+    background-color: var(--colore-sfondo);
     height: 100vh;
 }
 
@@ -32,6 +55,21 @@ body {
 input,
 button {
     font-family: inherit;
+    background-color: var(--colore-bottone);
+    color: var(--colore-bottone-testo);
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    border-radius: 10px;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+button:hover {
+    background-color: var(--colore-bottone-hover);
 }
 
 /*Header in cima allo schermo e fisso*/
@@ -44,6 +82,8 @@ header {
     align-items: center;
     flex-wrap: wrap;
     gap: 1rem;
+    background-color: var(--colore-2);
+    box-shadow: 2px 2px 5px var(--colore-ombra);
 }
 
 /*Scalo il titolo in base alla grandezza dello schermo*/
@@ -80,9 +120,12 @@ main {
     display: flex;
     flex-direction: column;
     width: 80%;
-    border: 2px solid black;
+    border: 2px solid var();
+    margin: 2em;
     border-radius: 8px;
-    box-shadow: 1px 1px 1px black, 4px 4px 4px black;
+    box-shadow: 1px 1px 1px var(--colore-ombra-interna), 4px 4px 4px var(--colore-ombra);
+    background-color: var(--colore-1);
+    border: 1px dashed var(--colore-bordo);
 }
 
 /*Intestazione dove stanno i bottoni cliccabili per cambiare tab*/
@@ -97,33 +140,50 @@ main {
 .tab-btn {
     flex-grow: 1;
     font-size: 18px;
-    border-bottom: 1px solid black;
-    border-right: 1px solid black;
+    border-bottom: 1px solid var(--colore-bordo);
+    border-right: 1px solid var(--colore-bordo);
     text-align: center;
     padding: 1em;
+    opacity: 0.7;
+    color: var(--colore-bottone-testo);
+    transition: background-color 1s ease, color 1s ease;
 }
+
+.tab-btn:hover {
+    background-color: var(--colore-2);
+}
+
+.tab-btn.active {
+    background-color: var(--colore-2);
+    border-bottom: 1px dashed var(--colore-bordo);
+    opacity: 1;
+}
+
 /*L'ultimo bottone non deve avere bordo a destra visto che lo ha già il tab-header*/
 .tab-btn:last-child {
     border-right: none;
 }
 
-/*Tab principale con animazione di transizione*/
 .tab-content {
     flex: 9;
     display: block;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.7s ease-in-out, padding 0.7s ease-in-out;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease, padding 0.5s ease;
     text-align: center;
     width: 100%;
     padding: 0;
 }
 
-/*Quando viene attivata la tab prende tutto lo spazio disponibile*/
 .tab-content.active {
-    max-height: 1000%;
+    max-height: 1000px;
+    opacity: 1;
+    transform: translateY(0);
     padding-top: 20px;
     padding-bottom: 20px;
+    background-color: var(--colore-2);
 }
 
 form {
@@ -151,6 +211,9 @@ form {
     width: 80%;
     font-size: 1.25em;
     padding: 0.5em;
+    background-color: inherit;
+    border: none;
+    border-bottom: 2px dashed var(--colore-bordo);
 }
 
 form button {
@@ -158,6 +221,12 @@ form button {
     margin: 10px auto;
     font-size: 1.5em;
     padding: 0.5em;
+    background-color: var(--colore-bottone);
+    color: var(--colore-bottone-testo);
+}
+
+form button:hover {
+    background-color: var(--colore-bottone-hover);
 }
 
 /*Stile del footer*/
@@ -165,7 +234,9 @@ footer {
     flex-shrink: 0;
     text-align: center;
     padding: 20px 0;
-    font-size: clamp(0.8rem, 1vw, 1.2rem);
+    font-size: clamp(0.4rem, 1vw, 0.7rem);
+    background-color: var(--colore-2);
+    box-shadow: 0 2px 5px var(--colore-ombra);
 }
 
 /*La shell è il contenitore dell'area del gioco e della pulsantiera*/
@@ -179,11 +250,11 @@ footer {
     padding-top: 3em;
     padding-bottom: 3em;
     background-image: url("/immagini/sfondi/shell.png");
-    border: 3px solid #333;
+    border: 3px solid var(--colore-bordo);
     border-radius: 55% / 60%;
     box-shadow:
-        inset 0 0 10px rgba(0, 0, 0, 0.2),
-        0 10px 20px rgba(0, 0, 0, 0.4);
+        inset 0 0 10px var(--colore-ombra-interna),
+        0 10px 20px var(--colore-ombra);
 }
 
 /*Lo schermo dove si muoverà il pet*/
@@ -197,10 +268,10 @@ footer {
     background-size: cover;
     background-repeat: no-repeat;
     image-rendering: pixelated;
-    border: 2px solid black;
+    border: 2px solid var(--colore-bordo);
     overflow: hidden;
     border-radius: 5px;
-    box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 1px 1px 3px var(--colore-ombra-interna);
 }
 
 /*Codice che gestisce gli sprite*/
@@ -252,13 +323,19 @@ footer {
     height: 60%;
 }
 
+#portafoglio {
+    padding-top: 2em;
+    text-align: center;
+    font-size: 2em;
+}
+
 /*itemList è l'ul che contiene gli oggetti del negozio*/
 #itemList {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     list-style: none;
-    padding: 0;
+    padding: 2em;
     width: 90%;
 }
 
@@ -274,9 +351,10 @@ li {
     justify-content: center;
     cursor: pointer;
     margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--colore-bordo);
+    border-radius: 10px;
+    background-color: var(--colore-3);
+    box-shadow: 2px 2px 5px var(--colore-ombra);
 }
 
 /*Gli sprite nel negozio non devono essere absolute ma statici*/
@@ -290,18 +368,32 @@ li span {
     text-align: center;
 }
 
+li.itemNonAcquistabile {
+    background-color: var(--colore-3);
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
 /*Contenitore per le statistiche del pet*/
 #stats {
     width: 60%;
     justify-content: center;
+    align-items: center;
+}
+
+#nomePet {
+    text-align: center;
+    padding: 2em;
+    font-size: clamp(1.2rem, 2vw + 0.5rem, 2rem);
 }
 
 /*Rappresenta una barra vuota*/
 .status-bar {
-    width: 70%;
+    width: 80%;
     height: 2em;
-    background-color: #eee;
-    border: 2px solid #333;
+    background-color: #ffffff;
+    border: 2px solid var(--colore-bordo);
     overflow: hidden;
 }
 
@@ -319,8 +411,10 @@ li span {
 }
 
 .status-label {
+    text-align: right;
     margin-right: auto;
-    width: 60px;
+    width: 20%;
+    padding: 1em;
 }
 
 /*Codice che gestisce il popup*/
@@ -331,7 +425,7 @@ li span {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: var(--colore-ombra-interna);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -344,9 +438,9 @@ li span {
 
 /*Centra il contenuto del popup*/
 .popup-content {
-    background: white;
+    background: var(--colore-3);
     padding: 2em;
-    border: 3px solid black;
+    border: 3px solid var(--colore-bordo);
     border-radius: 1em;
     text-align: center;
 }
@@ -359,8 +453,29 @@ li span {
     gap: 10px;
 }
 
+#logout-btn:hover,
+#delete-btn:hover,
+#libera-btn:hover,
+#confirm-delete:hover {
+    background-color: var(--colore-bottone-pericoloso-hover);
+}
+
+#message {
+    display: none;
+}
+
+#message.attivo {
+    display: block;
+    padding: 1em;
+    background-color: var(--colore-errore);
+    color: var(--colore-bottone-testo);
+    border: 2px dotted var(--colore-bordo);
+    border-radius: 10px;
+}
+
 /*Sotto i 1000px di schermo*/
 @media screen and (max-width: 1000px) {
+
     /*Ingrandisco la shell per mantenere le proporzioni*/
     .shell {
         width: 40%;
@@ -397,10 +512,19 @@ li span {
         height: 64px !important;
         background-size: 64px 64px !important;
     }
+
+    .status-label {
+        width: 50%;
+    }
+
+    .status-bar {
+        width: 50%;
+    }
 }
 
 /*sotto i 480px di grandezza*/
 @media screen and (max-width: 480px) {
+
     /*Ingrandisco ancora la shell*/
     .shell {
         width: 70%;

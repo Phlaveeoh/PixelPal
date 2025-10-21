@@ -7,7 +7,7 @@ async function handleLogin(event) {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
-    const res = await fetch('http://localhost:3000/api/auth/login', {
+    const res = await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -19,7 +19,9 @@ async function handleLogin(event) {
     if (res.ok) {
         window.location.href = '/private/dashboard.html';
     } else {
-        document.getElementById('message').innerText = data.message;
+        const divErrore = document.getElementById('message');
+        divErrore.classList.add("attivo");
+        divErrore.innerText = data.message;
     }
 }
 
@@ -35,7 +37,7 @@ async function handleRegister(event) {
         return;
     }
 
-    const res = await fetch('http://localhost:3000/api/auth/register', {
+    const res = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
@@ -47,7 +49,9 @@ async function handleRegister(event) {
     if (res.ok) {
         window.location.href = '/private/dashboard.html';
     } else {
-        document.getElementById('message').innerText = data.message;
+        const divErrore = document.getElementById('message');
+        divErrore.classList.add("attivo");
+        divErrore.innerText = data.message;
     }
 }
 

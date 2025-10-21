@@ -1,12 +1,13 @@
 window.onload = async () => {
     // Funzione per aggiornare lo stato
-    const res = await fetch('http://localhost:3000/api/pet/stato', {
+    const res = await fetch('/api/pet/stato', {
         method: 'GET',
         credentials: 'include'
     });
 
+    const data = await res.json();
+
     if (res.ok) {
-        const data = await res.json();
         const stato = data.stato;
         const barre = document.querySelectorAll(".status-bar");
         const riempimenti = document.querySelectorAll(".status-fill");
@@ -32,6 +33,8 @@ window.onload = async () => {
         const pet = JSON.parse(localStorage.getItem("pet"));
         document.getElementById("nomePet").innerText = pet.nome;
     } else {
-        console.log("Errore nel recupero dello stato");
+        const divErrore = document.getElementById('message');
+        divErrore.classList.add("attivo");
+        divErrore.innerText = data.message;
     }
 };

@@ -9,7 +9,7 @@ async function handleUpdateInfo() {
     const nome = document.getElementById('nome').value;
     const cognome = document.getElementById('cognome').value;
 
-    const res = await fetch('http://localhost:3000/api/user/update', {
+    const res = await fetch('/api/user/update', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nome, cognome }),
@@ -18,11 +18,16 @@ async function handleUpdateInfo() {
 
     if (res.ok) {
         location.reload();
+    } else {
+        const data = await res.json();
+        const divErrore = document.getElementById('message');
+        divErrore.classList.add("attivo");
+        divErrore.innerText = data.message;
     }
 }
 
 async function handleLogout() {
-    const res = await fetch('http://localhost:3000/api/auth/logout', {
+    const res = await fetch('/api/auth/logout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include'
@@ -30,6 +35,11 @@ async function handleLogout() {
 
     if (res.ok) {
         location.reload();
+    } else {
+        const data = await res.json();
+        const divErrore = document.getElementById('message');
+        divErrore.classList.add("attivo");
+        divErrore.innerText = data.message;
     }
 }
 
@@ -43,14 +53,21 @@ async function handleCambiaPassword(event) {
     const passwordNuova = document.getElementById('passwordNuova').value;
     const confermaPasswordNuova = document.getElementById('confermaPasswordNuova').value;
     if (passwordNuova === confermaPasswordNuova) {
-        const res = await fetch('http://localhost:3000/api/user/cambiaPassword', {
+        const res = await fetch('/api/user/cambiaPassword', {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
             body: JSON.stringify({ vecchiaPassword: passwordAttuale, nuovaPassword: passwordNuova }),
         });
+
+        const data = await res.json();
+
         if (res.ok) {
             location.reload();
+        } else {
+            const divErrore = document.getElementById('message');
+            divErrore.classList.add("attivo");
+            divErrore.innerText = data.message;
         }
     } else {
         document.getElementById("message").innerText = "Le due nuove password devono essere le stesse!";
@@ -58,21 +75,25 @@ async function handleCambiaPassword(event) {
 }
 
 async function handleAdozione() {
-    const res = await fetch('http://localhost:3000/api/pet/adotta', {
+    const res = await fetch('/api/pet/adotta', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include'
     });
+
+    const data = await res.json();
+
     if (res.ok) {
         window.location.href = '/private/dashboard.html';
     } else {
-        const data = await res.json();
-        document.getElementById("message").innerText = data.message;
+        const divErrore = document.getElementById('message');
+        divErrore.classList.add("attivo");
+        divErrore.innerText = data.message;
     }
 }
 
 async function handleLiberazione() {
-    const res = await fetch('http://localhost:3000/api/pet/libera', {
+    const res = await fetch('/api/pet/libera', {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include'
@@ -87,17 +108,22 @@ async function handleLiberazione() {
 }
 
 window.onload = async () => {
-    const res = await fetch('http://localhost:3000/api/user', {
+    const res = await fetch('/api/user', {
         method: 'GET',
         credentials: 'include'
     });
 
+    const data = await res.json();
+
     if (res.ok) {
-        const data = await res.json();
         const utente = data.utente;
         document.getElementById("username").value = utente.username;
         document.getElementById("nome").value = utente.nome;
         document.getElementById("cognome").value = utente.cognome;
+    } else {
+        const divErrore = document.getElementById('message');
+        divErrore.classList.add("attivo");
+        divErrore.innerText = data.message;
     }
 }
 
@@ -138,7 +164,7 @@ confirmDelete.addEventListener('click', async () => {
         return;
     }
 
-    const res = await fetch('http://localhost:3000/api/user/elimina', {
+    const res = await fetch('/api/user/elimina', {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password })
@@ -146,5 +172,10 @@ confirmDelete.addEventListener('click', async () => {
 
     if (res.ok) {
         location.reload();
+    } else {
+        const data = await res.json();
+        const divErrore = document.getElementById('message');
+        divErrore.classList.add("attivo");
+        divErrore.innerText = data.message;
     }
 });

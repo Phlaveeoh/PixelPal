@@ -63,17 +63,20 @@ function caricaItems(items, tipo, soldi) {
 
 window.onload = async () => {
     const tipo = new URLSearchParams(window.location.search).get('tipo');
-    console.log(tipo);
-    const res = await fetch(`http://localhost:3000/api/item?tipo=${tipo}`, {
+    const res = await fetch(`/api/item?tipo=${tipo}`, {
         method: 'GET',
         credentials: 'include'
     });
+
+    const data = await res.json();
+
     if (res.ok) {
-        const data = await res.json();
         const items = data.items;
         caricaItems(items, tipo, data.soldi);
         document.getElementById("soldi").textContent = `${data.soldi}`;
     } else {
-        console.log("Errore nel recupero degli items");
+        const divErrore = document.getElementById('message');
+        divErrore.classList.add("attivo");
+        divErrore.innerText = data.message;
     }
 };
