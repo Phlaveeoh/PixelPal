@@ -1,40 +1,47 @@
+//Elementi del DOM
 const area = document.getElementById("areaPet");
 const petFrame = document.getElementById("immaginePet");
 const itemFrame = document.getElementById("immagineItem")
-let xPet, yPet, vxPet;
-let xItem, yItem;
 
-const nFrames = 17;
+let xPet, yPet; //Variabili del pet
+let xItem, yItem; //Variabili dell'oggetto
 
+const nFrames = 17; //Numero di frame nello spritesheet del pet
+
+//Funzione che inizializza l'animazione del pet
 function initPetAnimation() {
+    //Posiziono il pet a schermo
     const larghezzaFrame = petFrame.clientWidth;
     xPet = (area.clientWidth / 2) - (larghezzaFrame / 2);
     yPet = (area.clientHeight - larghezzaFrame) * 0.9;
-    vxPet = 0;
-
     petFrame.style.left = `${xPet}px`;
     petFrame.style.top = `${yPet}px`;
 }
 
+//Questa funzione sceglie un punto a caso dell'area pet e ce lo sposta
 function scegliDestinazioneCasuale() {
-    const maxX = area.clientWidth - 64;
+    const larghezzaFrame = petFrame.clientWidth;
+    const maxX = area.clientWidth - larghezzaFrame;
     const destinazioneX = Math.random() * maxX;
     petFrame.style.left = `${destinazioneX}px`;
     xPet = destinazioneX;
     cambiaFrameCasuale();
 }
 
+//Funzione che cambia il frame del pet ad uno casuale scelto tra nFrames
 function cambiaFrameCasuale() {
     const larghezzaFrame = petFrame.clientWidth;
     const frameAttuale = Math.floor(Math.random() * nFrames);
     petFrame.style.backgroundPositionX = `${-(frameAttuale * larghezzaFrame)}px`;
 }
 
+//Funzione esportate per far partire l'animazione del pet
 export function startPetAnimation() {
     initPetAnimation();
     setInterval(scegliDestinazioneCasuale, 2000);
 }
 
+//Animazione di mangiata del pet
 export async function animazioneCibo() {
     const larghezzaFrame = petFrame.clientWidth;
     //Posiziono il pet
@@ -54,11 +61,13 @@ export async function animazioneCibo() {
 
     //Attendo la discesa del cibo
     await new Promise(resolve => {
+        //Uso due requestAnimationFrame almeno mi assicuro che la transizione abbia effetto
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 itemFrame.style.transform = `translateY(${yItemFinale}px)`;
             });
         });
+        //Quando la transizione termina lancio la resolve che completa la Promise
         itemFrame.addEventListener("transitionend", resolve, { once: true });
     });
 
@@ -92,6 +101,7 @@ export async function animazioneCibo() {
     });
 }
 
+//Funzione per animare il gioco del pet
 export async function animazioneGioco() {
     const larghezzaFrame = petFrame.clientWidth;
     //Posiziono il pet
@@ -111,11 +121,13 @@ export async function animazioneGioco() {
 
     //Attendo la discesa del gioco
     await new Promise(resolve => {
+        //Uso due requestAnimationFrame almeno mi assicuro che la transizione abbia effetto
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 itemFrame.style.transform = `translateY(${yItemFinale}px)`;
             });
         });
+        //Quando la transizione termina lancio la resolve che completa la Promise
         itemFrame.addEventListener("transitionend", resolve, { once: true });
     });
 
@@ -123,10 +135,12 @@ export async function animazioneGioco() {
     itemFrame.style.transition = "transform 100ms linear";
 
     await new Promise(resolve => {
+
         let ciclo = 0;
         const durataFrame = 300;
         const cicli = 6;
 
+        //l'item oscilla orizzontalmente, il pet verticalmente
         const animazione = setInterval(() => {
             let offsetItem = 0;
             let offsetPet = 0;
@@ -154,11 +168,13 @@ export async function animazioneGioco() {
 
     //rimuovo il gioco dall'area
     await new Promise(resolve => {
+        //Uso due requestAnimationFrame almeno mi assicuro che la transizione abbia effetto
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 itemFrame.style.transform = `translateY(${yItemFinale}px)`;
             });
         });
+        //Quando la transizione termina lancio la resolve che completa la Promise
         itemFrame.addEventListener("transitionend", resolve, { once: true });
     });
 }
