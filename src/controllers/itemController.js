@@ -23,10 +23,7 @@ exports.getItems = async (req, res) => {
 
     try {
         //Recupero tutti gli item dalla tabella corretta
-        const [items] = await pool.promise().execute(
-            `SELECT * FROM ?`,
-            [tabella]
-        );
+        const [items] = await pool.promise().execute(`SELECT * FROM ${tabella}`);
         //Recupero il saldo dell'utente
         const [users] = await pool.promise().execute(
             `SELECT soldi FROM utenti WHERE id_utente = ?`,

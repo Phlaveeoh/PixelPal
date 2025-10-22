@@ -100,17 +100,18 @@ window.onload = async () => {
     if (res.ok) {
         //Prendo il pet dalla risposta
         const pet = data.pet;
+        console.log(pet);
         //Lo carico nel localStorage solo se non c'è già
         if (!localStorage.getItem("pet")) {
             localStorage.setItem("pet", JSON.stringify({
                 nome: pet.nome,
-                url: pet.url_pet
+                url: pet.url
             }));
         }
         //Carico il pet
         let petFrame = document.getElementById("immaginePet");
         petFrame.dataset.tipo = "pet"
-        petFrame.style.backgroundImage = `url(${pet.url_pet})`;
+        petFrame.style.backgroundImage = `url(${pet.url})`;
         petFrame.style.backgroundPosition = `0 0`;
         //Avvio l'animazione
         startPetAnimation();

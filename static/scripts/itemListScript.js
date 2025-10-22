@@ -84,6 +84,7 @@ window.onload = async () => {
 
     //Se risposta positiva:
     if (res.ok) {
+        console.log(data);
         //Carico la lista di item ed i soldi dell'utente
         const items = data.items;
         caricaItems(items, tipo, data.soldi);
