@@ -9,12 +9,15 @@ const app = express();
 app.use(cookieParser());
 app.use(express.json());
 
+//Gli utenti già autenticati saltano il login
+app.get('/', authenticateToken, (req, res) => { return res.redirect('/private/dashboard.html'); });
+
 //Configurazione directory statiche del client
-app.use(express.static("static/public"));
+app.use(express.static("static/public", { index: "login.html" }));
 app.use("/scripts", express.static("static/scripts"));
 app.use("/stylesheets", express.static("static/stylesheets"));
 app.use("/immagini", express.static("static/immagini"));
-app.use("/fonts", express.static("static/fonts"))
+app.use("/fonts", express.static("static/fonts"));
 app.use("/private", authenticateToken, express.static("static/private"));
 
 //Configurazione delle rotte API
