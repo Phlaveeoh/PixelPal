@@ -106,3 +106,20 @@ La webapp sarà raggiungibile su http://localhost:3000.
 
 > **NOTA:** al primo avvio occorre collegarsi al db ed eseguire le CREATE TABLE e gli insert minimali come per l'avvio in locale!  
 > Questi file possono essere trovati in [`docs/db`](docs/db/) con il nome: [`createTable.sql`](docs/db/createTable.sql) ed [`insert.sql`](docs/db/insert.sql).
+
+## Utilizzo della webapp
+
+L'esperienza cerca di essere il più fedele possibile a quella dei tamagotchi vintage pur con molte meno feature.  
+
+Una volta creato l'account e fatto l'accesso bisognerà adottare un nuovo pet, per farlo basta cliccare in alto a destra sull'icona dell'utente, cliccare nella tab pet e premere il pulsante "Adotta un nuovo pet".  
+
+Una volta fatto ciò si avrà il proprio pet e si potrà giocare con lui.
+
+- Pulsante stato:
+  - Reindirizza alla pagina per controllare le statistiche del pet
+- Pulsante cibo:
+  - Reindirizza al negozio dei pasti
+- Pulsante gioca:
+  - Reindirizza al negozio dei giochi
+
+> **NOTA:** Ancora non c'è modo di guadagnare monete, usale con cautela
